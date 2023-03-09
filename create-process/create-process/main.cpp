@@ -38,6 +38,15 @@ int main(int argc, char* argv[]) {
 	TCHAR szApplicationName[]=TEXT("C://Program Files (x86)//Microsoft//Edge Dev//Application//msedge.exe");
 	TCHAR szCmdLine[]=TEXT("https://www.bilibili.com/");
 	CreateChildProcess(szApplicationName, szCmdLine);
+	
+
+	//CreateEventµÄÀý×Ó
+	SECURITY_ATTRIBUTES sa;
+	ZeroMemory(&sa, sizeof(sa));
+	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+	sa.bInheritHandle = TRUE;
+	CreateEvent(&sa, FALSE, FALSE, TEXT("MyEvent"));
+
 	getchar();
 	return 0;
 }
