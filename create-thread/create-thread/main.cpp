@@ -19,11 +19,19 @@ void WINAPI TestThread() { //线程函数格式
 int main(int argc,char* argv[]) {
 	int n = 10;
 	HANDLE hThread[2];
+	
+	DWORD r1;
+	DWORD dwResult1;
+	DWORD dwResult2;
+
     hThread[0] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadProc, &n, 0, NULL);
 	hThread[1] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)TestThread, 0, 0, NULL);
 
 	
 	WaitForMultipleObjects(2,hThread,1, INFINITE);
+	GetExitCodeThread(hThread[0], &dwResult1);
+	GetExitCodeThread(hThread[0], &dwResult1);
+
 	printf("线程执行完毕 \n");
 	
 	getchar();
