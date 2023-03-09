@@ -28,14 +28,21 @@ int main(int argc,char* argv[]) {
 	hThread[1] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)TestThread, 0, 0, NULL);
 
 	
-	WaitForMultipleObjects(2,hThread,1, INFINITE);
-	GetExitCodeThread(hThread[0], &dwResult1);
-	GetExitCodeThread(hThread[0], &dwResult1);
+	//WaitForMultipleObjects(2,hThread,1, INFINITE);      //计时器等待两个线程都...再进行 最后一个参数表示等多久
+	//GetExitCodeThread(hThread[0], &dwResult1);    //获取返回值
+	//GetExitCodeThread(hThread[0], &dwResult1);
+	Sleep(1000);
+	SuspendThread(hThread[0]);
+
+	CONTEXT context;
+	context.ContextFlags = CONTEXT_INTEGER;
+	GetThreadContext(hThread[0], &context);         //获取线程上下文结构体 获取挂起点的
+	printf("%x %x  \n", context.Rax, context.Rcx);
 
 	printf("线程执行完毕 \n");
 	
-	getchar();
-	CloseHandle(hThread);
+	//getchar();
+	//CloseHandle(hThread);
 
 	//for (int i = 0; i < 100; i++) {
 	//	Sleep(500);	for (int i = 0; i < 100; i++) {
