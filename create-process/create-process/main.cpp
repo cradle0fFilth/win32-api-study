@@ -24,6 +24,8 @@ bool CreateChildProcess(PTCHAR szChildProcssName, PTCHAR szCommandLine) {
 		return false;
 	   }
 
+	printf("%x %x %x %x", pi.dwProcessId, pi.dwThreadId, pi.hProcess, pi.hThread);
+
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
 	return true;
