@@ -33,6 +33,7 @@ int main() {
 	int x = myPlus(1, 2);
 	int y = mySub(5, 2);
 	printf("x = %d \ny = %d \n", x, y);
+	FreeLibrary(hModule);
 
 	return 0;
 }
